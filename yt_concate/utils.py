@@ -29,4 +29,4 @@ class Utils:
 
     def caption_file_exists(self, url):
         path = self.get_caption_filepath(url)
-        os.path.exists(path) and os.path.getsize(path) > 0
+        return os.path.exists(path) and os.path.getsize(path) > 0
