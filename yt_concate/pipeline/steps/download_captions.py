@@ -5,8 +5,12 @@ from .step import Step
 
 class DownloadCaptions(Step):
     def process(self, data, inputs, utils):
+        count = 0
         # download the package by:  pip install pytube
         for yt in data:
+            # count += 1
+            # if count > inputs['limit']:
+            #     break
             print('downloading caption for', yt.id)
             if utils.caption_file_exists(yt):
                 print('found existing caption file')
@@ -21,7 +25,7 @@ class DownloadCaptions(Step):
                 continue
             # save the caption to a file named Output.txt
 
-            text_file = open(utils.get_caption_filepath(yt.url), 'w', encoding='utf-8')
+            text_file = open(yt.caption_filepath, "w", encoding='utf-8')
             text_file.write(en_caption_convert_to_srt)
             text_file.close()
         return data
